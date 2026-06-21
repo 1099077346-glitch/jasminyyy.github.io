@@ -7,43 +7,43 @@
 <style>
 body{
     margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#0b0b12;
     font-family:Arial;
+    background:#0b0b12;
     color:white;
 }
 
-.menu{
+.header{
     text-align:center;
+    padding:60px 20px 20px;
 }
 
 h1{
-    font-size:40px;
-    margin-bottom:10px;
+    font-size:42px;
 }
 
 p{
-    opacity:0.6;
-    margin-bottom:30px;
+    opacity:0.7;
+    max-width:600px;
+    margin:10px auto;
 }
 
-.buttons{
+.menu{
     display:flex;
     flex-direction:column;
+    align-items:center;
     gap:12px;
+    margin-top:30px;
 }
 
 a{
-    display:inline-block;
+    width:280px;
+    text-align:center;
     padding:12px 26px;
     border:1px solid white;
     color:white;
     text-decoration:none;
     border-radius:10px;
-    transition:0.25s;
+    transition:0.3s;
 }
 
 a:hover{
@@ -57,22 +57,26 @@ a:hover{
 
 <body>
 
-<div class="menu">
+<div class="header">
 
     <h1>🎮 GAME DESIGN PORTFOLIO</h1>
-    <p>Select a section</p>
 
-    <div class="buttons">
+    <p>
+        游戏设计方向申请者｜系统设计 / 情感机制 / 玩法拆解<br>
+        以下为三个策划项目与作品集展示
+    </p>
 
-        <a href="game.html">📁 游戏作品集</a>
+</div>
 
-        <a href="project1.html">📄 谜夜规约：Multiverse Protocol（策划文档）</a>
+<div class="menu">
 
-        <a href="project2.html">📄 无限暖暖玩法重构（策划文档）</a>
+    <a href="game.html">📁 游戏作品集</a>
 
-        <a href="project3.html">📄 女性向情感机制设计（策划文档）</a>
+    <a href="project1.html">📄 谜夜规约（策划文档）</a>
 
-    </div>
+    <a href="project2.html">📄 无限暖暖玩法重构（策划文档）</a>
+
+    <a href="project3.html">📄 女性向与高情感链接机制设计（策划文档）</a>
 
 </div>
 
