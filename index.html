@@ -2,44 +2,77 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>Game Design Portfolio</title>
+<title>Midnight Protocol</title>
+
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#0d0d14;
+    font-family:Arial;
+    color:white;
 }
 
-h1 {
-    text-align: center;
-    padding: 30px;
-    color: #333;
+.menu{
+    text-align:center;
 }
 
-.section {
-    width: 80%;
-    margin: 40px auto;
+h1{
+    font-size:42px;
+    margin-bottom:10px;
 }
 
-iframe {
-    width: 100%;
-    height: 90vh;
-    border: none;
-    margin-bottom: 50px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: white;
+p{
+    opacity:0.6;
+    margin-bottom:40px;
+}
+
+.buttons{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+a{
+    padding:12px 28px;
+    border:1px solid white;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+a:hover{
+    background:white;
+    color:black;
 }
 </style>
+
 </head>
 
 <body>
 
-<h1>🎮 Game Design Portfolio</h1>
+<div class="menu">
 
-<a href="docs.html">📘 查看策划文档</a>
-    
-<div class="section">
-    <iframe src="游戏作品集.pdf"></iframe>
+    <h1>🎮 THE MIDNIGHT PROTOCOL</h1>
+    <p>Rule-driven × Multiverse System Design</p>
+
+    <div class="buttons">
+
+        <!-- 策划文档 -->
+        <a href="docs.html">▶ DESIGN DOCUMENT (GDD)</a>
+
+        <!-- PDF1：你的作品集 -->
+        <a href="游戏作品集.pdf">📁 PORTFOLIO PDF</a>
+
+        <!-- PDF2：完整策划文档 -->
+        <a href="Multiverse_Protocol_GDD.pdf">📄 FULL GDD PDF</a>
+
+    </div>
+
 </div>
 
 </body>
