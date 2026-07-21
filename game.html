@@ -5,75 +5,116 @@
 <title>游戏策划作品集</title>
 
 <style>
-/* 1. 全局重置：锁定网页本身不让它上下滚动，创造干净的沉浸式看图体验 */
+/* =========================================
+   1. 全局样式：锁定屏幕，防止网页滚动
+   ========================================= */
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    /* 彻底还原你最初要求的字体和背景色 */
+    font-family: Arial; 
     margin: 0;
     padding: 0;
     background: #111;
     color: white;
-    overflow: hidden; /* 🔥 关键：隐藏整个网页的外层滚动条，只留 PDF 内部翻页 */
-}
-
-/* 2. 极简顶部返回栏 */
-.header {
-    height: 55px; /* 固定顶部导航栏高度 */
+    
+    /* 锁定整个 body，不让网页产生多余的上下滚动条 */
+    height: 100vh;
+    overflow: hidden; 
+    
+    /* 使用 Flex 布局将顶部栏和作品集区域垂直排列 */
     display: flex;
-    align-items: center;
-    padding: 0 20px;
-    background: #1a1a1a;
-    border-bottom: 1px solid #333;
+    flex-direction: column;
 }
 
+/* =========================================
+   2. 顶部栏：【严禁修改】
+   彻底还原了你第一段代码里的排版和居中
+   ========================================= */
+.header {
+    /* 还原你最初的 20px padding */
+    padding: 20px; 
+    text-align: center;
+    background: #111; /* 保持原样背景 */
+}
+
+/* 保护“游戏策划作品集”几个字的排版和字号 */
+.header h1 {
+    /* 不指定 font-size，将使用浏览器默认大小，保持和你最初看到的一致 */
+    margin: 0 0 10px 0; /* 消除默认 margin */
+}
+
+/* 保护“返回首页”按钮的排版 */
 .header a {
     display: inline-block;
-    padding: 6px 14px;
+    margin: 10px; /* 还原你最初的 margin */
+    padding: 10px 20px; /* 还原你最初的 padding */
     background: white;
     color: black;
     text-decoration: none;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background 0.2s;
+    border-radius: 8px;
+    
 }
 
-.header a:hover {
-    background: #ddd;
+/* =========================================
+   3. 作品集区域：【只改变这里】
+   用来实现缩小、全显、居中
+   ========================================= */
+.portfolio-container {
+    /* 吃掉 body Flex 布局剩下的所有高度 */
+    flex: 1;
+    
+    /* 关键：使用 Flex 布局将 iframe 在这里区域内水平、垂直双居中 */
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center;     /* 垂直居中 */
+    
+    /* 给作品集周围留一点黑色呼吸空间，看起来更高级 */
+    padding: 15px; 
+    background: #111;
+    overflow: hidden; /* 防止区域本身溢出 */
 }
 
-/* 3. 让 PDF 框完美占满屏幕剩下的所有高度 */
-.container {
-    width: 100%;
-    /* 🔥 关键：用 calc() 自动计算，屏幕总高度(100vh) 减去顶部栏高度(55px)，一丝不差！ */
-    height: calc(100vh - 55px); 
-    margin: 0;
-    padding: 0;
-}
-
+/* 强制缩小的核心关键 */
 iframe {
-    width: 100%;
-    height: 100%; /* 填满 container 的高度 */
-    border: none;
-    display: block;
+    border: 1px solid #333;
+    border-radius: 4px;
     background: #222;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+
+    /* --- 重中之重：CSS 强行缩小并保持 A3 比例 --- */
+    
+    /* 1. 强制设定 A3 横向比例 (宽 / 高 = 1.414 / 1) */
+    aspect-ratio: 1.414 / 1; 
+    
+    /* 2. 告诉 iframe：你的高度绝对不能超过这个父区域（屏幕剩余空间）的高度 */
+    max-height: 100%; 
+    
+    /* 3. 同时也要限制最大宽度，不能超过屏幕 */
+    max-width: 100%; 
+    
+    /* 4. 允许宽度和高度在比例下自动计算 (谁先撞到墙，就按谁来缩小) */
+    width: auto;
+    height: auto;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <a href="index.html">← 返回首页</a>
-</div>
+    <!-- 顶部栏：排版完全未变 -->
+    <div class="header">
+        <h1>📁 游戏策划作品集</h1>
+        <a href="index.html">← 返回首页</a>
+    </div>
 
-<div class="container">
-    <!-- 🔥 核心秘密武器：在 pdf 后缀名后面加上 #view=Fit -->
-    <iframe src="游戏策划作品集.pdf#view=Fit"></iframe>
-</div>
+    <!-- 作品集区域：改为只用于承载 iframe，并在其中实现居中和缩小 -->
+    <div class="portfolio-container">
+        <!-- 保险起见，PDF 链接后的参数改为 FitV (按高度全显) -->
+        <iframe src="游戏策划作品集.pdf#view=FitV"></iframe>
+    </div>
 
 </body>
 </html>
