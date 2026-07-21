@@ -5,38 +5,70 @@
 <title>游戏策划作品集</title>
 
 <style>
-body{
-    font-family:Arial;
-    margin:0;
-    background:#111;
-    color:white;
+/* 1. 全局重置与基础样式 */
+* {
+    box-sizing: border-box;
 }
 
-.header{
-    padding:20px;
-    text-align:center;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #111;
+    color: white;
 }
 
-.container{
-    padding:20px;
+/* 2. 压缩顶部栏空间，改用 Flex 布局让标题和返回按钮在一行显示（或紧凑显示） */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #1a1a1a;
+    border-bottom: 1px solid #333;
 }
 
-/* PDF嵌入 */
-iframe{
-    width:100%;
-    height:85vh;
-    border:none;
+.header h1 {
+    font-size: 1.3rem;
+    margin: 0; /* 🔥 关键：消除 h1 默认的巨大上下边距，解决“偏下”问题 */
 }
 
-/* 返回按钮 */
-a{
-    display:inline-block;
-    margin:10px;
-    padding:10px 20px;
-    background:white;
-    color:black;
-    text-decoration:none;
-    border-radius:8px;
+/* 返回按钮优化 */
+.header a {
+    display: inline-block;
+    padding: 8px 16px;
+    background: white;
+    color: black;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.header a:hover {
+    background: #ddd;
+}
+
+/* 3. 容器与 PDF 嵌入框优化 */
+.container {
+    max-width: 1400px; /* 适配大屏浏览，防止过于贴边 */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+iframe {
+    width: 100%;
+    /* 🔥 关键方案 A：直接给一个足够大的固定高度（如 1200px 或 1400px），让浏览器产生整体下滑滚动条 */
+    height: 1300px; 
+    
+    /* 🔥 关键方案 B（可选）：如果你的作品集是仅有一页的 A3 横版长图，可以开启下面这行比例自适应，注释掉上面的 height */
+    /* aspect-ratio: 1.414 / 1; */ 
+
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: #222; /* 网页加载 PDF 时的垫底色 */
+    display: block;
 }
 </style>
 </head>
@@ -44,15 +76,13 @@ a{
 <body>
 
 <div class="header">
-    <h1>📁 游戏策划作品集</h1>
+    <h1>游戏策划作品集</h1>
     <a href="index.html">← 返回首页</a>
 </div>
 
 <div class="container">
-
-    <!-- 🔥 关键：PDF内嵌 -->
+    <!-- PDF内嵌 -->
     <iframe src="游戏策划作品集.pdf"></iframe>
-
 </div>
 
 </body>
