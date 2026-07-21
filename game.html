@@ -6,98 +6,76 @@
 
 <style>
 /* =========================================
-   1. 全局样式：锁定屏幕，防止网页滚动
+   1. 全局样式：解除锁定，允许垂直滑动
    ========================================= */
 * {
     box-sizing: border-box;
 }
 
 body {
-    /* 彻底还原你最初要求的字体和背景色 */
+    /* 【100%还原】字体与背景色 */
     font-family: Arial; 
     margin: 0;
     padding: 0;
     background: #111;
     color: white;
     
-    /* 锁定整个 body，不让网页产生多余的上下滚动条 */
-    height: 100vh;
-    overflow: hidden; 
-    
-    /* 使用 Flex 布局将顶部栏和作品集区域垂直排列 */
-    display: flex;
-    flex-direction: column;
+    /* 🔥 关键调整：允许网页垂直下滑，禁止横向晃动 */
+    overflow-x: hidden; 
+    overflow-y: auto;   
 }
 
 /* =========================================
-   2. 顶部栏：【严禁修改】
-   彻底还原了你第一段代码里的排版和居中
+   2. 顶部栏：【绝对零修改，100%原样保留】
+   排版、居中、字号、边距与你原本一模一样
    ========================================= */
 .header {
-    /* 还原你最初的 20px padding */
     padding: 20px; 
     text-align: center;
-    background: #111; /* 保持原样背景 */
+    background: #111; 
 }
 
-/* 保护“游戏策划作品集”几个字的排版和字号 */
 .header h1 {
-    /* 不指定 font-size，将使用浏览器默认大小，保持和你最初看到的一致 */
-    margin: 0 0 10px 0; /* 消除默认 margin */
+    margin: 0 0 10px 0; 
 }
 
-/* 保护“返回首页”按钮的排版 */
 .header a {
     display: inline-block;
-    margin: 10px; /* 还原你最初的 margin */
-    padding: 10px 20px; /* 还原你最初的 padding */
+    margin: 10px; 
+    padding: 10px 20px; 
     background: white;
     color: black;
     text-decoration: none;
     border-radius: 8px;
-    
 }
 
 /* =========================================
-   3. 作品集区域：【只改变这里】
-   用来实现缩小、全显、居中
+   3. 作品集区域：放大尺寸 + 水平居中
    ========================================= */
 .portfolio-container {
-    /* 吃掉 body Flex 布局剩下的所有高度 */
-    flex: 1;
-    
-    /* 关键：使用 Flex 布局将 iframe 在这里区域内水平、垂直双居中 */
+    /* 使用 Flex 保证无论放大到多少，作品集永远在正中间 */
     display: flex;
-    justify-content: center; /* 水平居中 */
-    align-items: center;     /* 垂直居中 */
+    justify-content: center;
     
-    /* 给作品集周围留一点黑色呼吸空间，看起来更高级 */
-    padding: 15px; 
+    /* 底部多留 40px 的黑色呼吸空间，滑到底部时更好看 */
+    padding: 10px 20px 40px 20px; 
     background: #111;
-    overflow: hidden; /* 防止区域本身溢出 */
 }
 
-/* 强制缩小的核心关键 */
+/* 🔥 关键放大部分 */
 iframe {
     border: 1px solid #333;
-    border-radius: 4px;
+    border-radius: 6px;
     background: #222;
-    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.6);
 
-    /* --- 重中之重：CSS 强行缩小并保持 A3 比例 --- */
+    /* 1. 设定宽度为屏幕的 88%，不仅大幅放大，两边还能留出高级的黑色边距 */
+    width: 88%; 
+    max-width: 1500px; /* 防止在大大屏/4K显示器上放得过大失真 */
     
-    /* 1. 强制设定 A3 横向比例 (宽 / 高 = 1.414 / 1) */
+    /* 2. 严格绑定 A3 横向比例 (宽:高 = 1.414:1) */
+    /* 随着宽度扩大，高度会自动按 A3 比例增长，产生下滑空间 */
     aspect-ratio: 1.414 / 1; 
-    
-    /* 2. 告诉 iframe：你的高度绝对不能超过这个父区域（屏幕剩余空间）的高度 */
-    max-height: 100%; 
-    
-    /* 3. 同时也要限制最大宽度，不能超过屏幕 */
-    max-width: 100%; 
-    
-    /* 4. 允许宽度和高度在比例下自动计算 (谁先撞到墙，就按谁来缩小) */
-    width: auto;
-    height: auto;
 }
 </style>
 </head>
@@ -110,10 +88,10 @@ iframe {
         <a href="index.html">← 返回首页</a>
     </div>
 
-    <!-- 作品集区域：改为只用于承载 iframe，并在其中实现居中和缩小 -->
+    <!-- 作品集区域 -->
     <div class="portfolio-container">
-        <!-- 保险起见，PDF 链接后的参数改为 FitV (按高度全显) -->
-        <iframe src="游戏策划作品集.pdf#view=FitV"></iframe>
+        <!-- 使用 #view=Fit 确保 A3 文件完美贴合当前放大的框 -->
+        <iframe src="游戏策划作品集.pdf#view=Fit"></iframe>
     </div>
 
 </body>
